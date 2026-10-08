@@ -1,5 +1,13 @@
 <script setup>
+import { ref } from 'vue'
 
+// A única "lógica" desta aula: ligar e desligar o dark mode
+const escuro = ref(false)
+
+function alternarTema() {
+  escuro.value = !escuro.value
+  document.documentElement.classList.toggle('dark', escuro.value)
+}
 </script>
 
 <template>
@@ -16,10 +24,11 @@
           <a href="#" class="rounded-lg px-3 py-2 transition-colors hover:bg-escola-700">Meus Pedidos</a>
           <a href="#" class="rounded-lg px-3 py-2 transition-colors hover:bg-escola-700">🛒 Carrinho</a>
           <button
+            @click="alternarTema"
             class="rounded-lg px-2 py-2 transition-colors hover:bg-escola-700"
-            title="Modo escuro"
+            :title="escuro ? 'Modo claro' : 'Modo escuro'"
           >
-            ☀️
+            {{ escuro ? '☀️' : '🌙' }}
           </button>
         </div>
       </nav>
